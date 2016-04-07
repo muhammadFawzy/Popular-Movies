@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/most_popular"
+        android:showAsAction="never"
+        android:title="most popular" />
+    <item
+        android:id="@+id/top_rated"
+        android:showAsAction="never"
+        android:title=" top rated" />
+
+    <item
+        android:id="@+id/favourite"
+        android:showAsAction="never"
+        android:title=" Favorite" />
+
+</menu>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+    <string-array name="spinner_sort">
+        <item>Popular</item>
+        <item>Top rated</item>
+
+    </string-array>
+</resources>
