@@ -52,8 +52,8 @@ public class DetailFragment extends Fragment {
     Button add_fav;
     MovieLocalData localMovieData;
     boolean local;
-
     Movie movie;
+    android.support.v7.widget.ShareActionProvider mShareActionProvider;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -158,7 +158,6 @@ public class DetailFragment extends Fragment {
 
     }
 
-    android.support.v7.widget.ShareActionProvider mShareActionProvider;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -169,18 +168,6 @@ public class DetailFragment extends Fragment {
 
 
     }
-//
-//    private Intent getShareIntent() {
-//
-//        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-//        shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-//        shareIntent.setType("text/plain");
-//        shareIntent.putExtra(Intent.EXTRA_TEXT,
-//                mForecastStr + FORECAST_SHARE_HASHTAG);
-//
-//
-//        return shareIntent;
-//    }
 
 
     @Override
