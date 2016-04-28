@@ -1,6 +1,7 @@
 package app.popularmovies.mfawzy.com;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -8,10 +9,14 @@ import android.os.Environment;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -82,6 +87,7 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_detail, container, false);
+        setHasOptionsMenu(true);
 
         TextView title = (TextView) root.findViewById(R.id.movie_title);
         title.setText(movie.getTitle());
@@ -150,6 +156,38 @@ public class DetailFragment extends Fragment {
 
         return root;
 
+    }
+
+    android.support.v7.widget.ShareActionProvider mShareActionProvider;
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.detais_menu, menu);
+        MenuItem item = menu.findItem(R.id.action_share);
+        mShareActionProvider = (android.support.v7.widget.ShareActionProvider) MenuItemCompat.getActionProvider(item);
+
+
+    }
+//
+//    private Intent getShareIntent() {
+//
+//        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+//        shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+//        shareIntent.setType("text/plain");
+//        shareIntent.putExtra(Intent.EXTRA_TEXT,
+//                mForecastStr + FORECAST_SHARE_HASHTAG);
+//
+//
+//        return shareIntent;
+//    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        return super.onOptionsItemSelected(item);
     }
 
     private Target target = new Target() {
@@ -306,6 +344,12 @@ public class DetailFragment extends Fragment {
                     trailer.setSite(obj.getString("site"));
                     trailer.setType(obj.getString("type"));
                     trailerAdapter.add(trailer);
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_TEXT,
+                            "http://m.youtube.com/watch?v=" + trailerAdapter.trailers.get(0).getKey());
+                    mShareActionProvider.setShareIntent(shareIntent);
 
 
                 }
@@ -393,4 +437,6 @@ public class DetailFragment extends Fragment {
             }
         }
     }
+
+
 }
